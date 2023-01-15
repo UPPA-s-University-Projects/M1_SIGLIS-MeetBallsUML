@@ -1,0 +1,17 @@
+@startuml
+
+left to right direction
+
+:User: as usr
+
+rectangle "MeetBalls" {
+    (Swipe right to like) as srtl
+    (Swipe left to dislike) as sltd
+    (Match with user) as mwu
+    (Connect with matched user) as cwmu
+}
+
+usr --> srtl
+usr --> sltd
+srtl ..> mwu : <<include>>
+mwu ..> cwmu : <<include>>

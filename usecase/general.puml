@@ -1,0 +1,20 @@
+@startuml
+
+
+left to right direction
+
+:User: as usr
+
+rectangle "MeetBalls" {
+    (Create an account) as ca
+    (Change account informations) as cai
+    (Like other user) as lu
+    (Match with other user) as mu
+    (Chat with other user) as cu
+}
+
+usr --> ca 
+usr --> cai
+usr --> lu
+lu <.. mu : <<extends>>
+lu <.. cu : <<extends>>

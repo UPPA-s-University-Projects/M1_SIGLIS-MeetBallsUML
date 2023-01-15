@@ -1,0 +1,32 @@
+@startuml
+
+left to right direction
+
+:User: as usr
+
+rectangle "Create a MeetBalls account" {
+    (Enter name) as en
+    (Enter age) as ea
+    (Enter sex) as es
+    (Upload a profile picture) as upp
+    (Enter location) as el
+    (Enter search radius) as esr
+    (Enter favorite kind of cook) as efkc
+    (Enter favorite kind of food) as efkf
+    (Enter for desert)  as efd
+    (Enter bio) as eb
+    (Enter diet) as ed
+}
+
+
+usr --> en
+usr --> ea
+usr --> es
+usr --> upp
+usr --> el
+usr --> esr
+usr --> efkc
+usr --> efkf
+usr --> efd
+usr --> eb
+usr --> ed
