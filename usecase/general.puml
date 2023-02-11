@@ -11,6 +11,7 @@ rectangle "MeetBalls" {
     (Like other user) as lu
     (Match with other user) as mu
     (Chat with other user) as cu
+    (Find restaurants for a date) as fr
 }
 
 usr --> ca 
@@ -18,3 +19,4 @@ usr --> cai
 usr --> lu
 lu <.. mu : <<extends>>
 lu <.. cu : <<extends>>
+lu <.. fr : <<extends>>
