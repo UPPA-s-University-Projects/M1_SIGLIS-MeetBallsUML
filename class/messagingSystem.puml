@@ -1,0 +1,36 @@
+@startuml 
+    Class "Person" as person{
+   
+        - Int id
+        - String name
+        - String surname
+        - Int age
+        - String identity
+        - String email
+        - String bio
+        - Double lon
+        - Double lat
+        - Float perimeter
+        - Bool desert
+        - []Person liked
+        - []Person matched
+        - []CookType favCookType
+        - []Diet diets
+
+    }
+
+    Class "Message" as messaging{
+        - String messages        
+        - DateTime timestamp
+        - Person sender
+        - Discussion discussion
+    }
+
+    Class "Discussion" as discuss{
+        - []Message messages
+        - Person[] participants
+    }
+
+    discuss "1" -- "0..*" messaging
+    messaging "1" -- "1" person
+    person "2" -- "0..*" discuss

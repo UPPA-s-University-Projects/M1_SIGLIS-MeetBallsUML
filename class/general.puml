@@ -1,0 +1,47 @@
+@startuml 
+    Class "Person" as person{
+   
+        - Int id
+        - String name
+        - String surname
+        - Int age
+        - String identity
+        - String email
+        - String bio
+        - Double lon
+        - Double lat
+        - Float perimeter
+        - Bool desert
+        - []Person liked
+        - []Person matched
+        - []CookType favCookType
+        - []Diet diets
+
+    }
+
+    Class "CookType" as cookType{
+        - Int id
+        - String name
+    }
+
+    Class "Diet" as diet{
+        - Int id
+        - String name
+    }
+
+    Class "Dish" as dish{
+        - Int id
+        - String name
+        - String description
+        - String image
+        - CookType cookType
+        - []Diet diets
+    }
+
+    person "0..*" o-- "0..*" cookType
+    person "0..*" o-- "0..*" diet
+
+    dish "1" *--- "0..*" cookType
+    dish "0..*" *-- "0..*" diet
+    person "0..*" o- "0..*" person
+@enduml
