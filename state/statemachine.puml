@@ -1,0 +1,35 @@
+@startuml
+
+[*] --> RetriveList
+RetriveList : Retrieve the list of all the users
+RetriveList : We remove already liked users from the list
+
+State MatchingSystem{
+    [*] --> GetUserAtIndexUsersList
+    GetUserAtIndexUsersList : We retrieve the user at the index !
+    GetUserAtIndexUsersList --> MatchingAlgorithm
+    MatchingAlgorithm : We pass our user to the matching algorithm
+    MatchingAlgorithm -> [*] : Score is < 0,23
+    MatchingAlgorithm --> AddUserToMatchedList : Score is ≥ 0,23
+    AddUserToMatchedList : We add our user to the matched list
+}
+
+RetriveList --> MatchingSystem
+
+State ProposeUser{
+    [*] --> GetUserAtIndexLikedList
+    GetUserAtIndexLikedList : We retrieve the list returned by the MatchingAlgorithm state
+    GetUserAtIndexLikedList : We propose the user to the other user
+   
+    GetUserAtIndexLikedList --> DoesntLike : Our user doesn't like the other user
+    DoesntLike : We propose the next user in the list
+    DoesntLike --> GetUserAtIndexLikedList
+
+    GetUserAtIndexLikedList --> Like : Our user doesn't like the other user
+    Like : We add the user to our user's liked list
+    Like : We propose the next user in the list
+    Like --> GetUserAtIndexLikedList
+    
+}
+
+MatchingSystem --> ProposeUser 
