@@ -4,8 +4,7 @@
 RetriveLikedList : We retrieve the list of liked user of our user
 RetriveLikedList : We look for each user's liked list
 
-RetriveLikedList ---> DoesntGetsLikedBack : Our user isn't on the liked list \n of the other user
-DoesntGetsLikedBack --> [*]
+RetriveLikedList --> [*] : Our user isn't on the liked list \n of the other user
 
 RetriveLikedList ---> GetsLikedBack : Our user is on \n the liked list of the other user
 GetsLikedBack : We add the other user to the list of matched user

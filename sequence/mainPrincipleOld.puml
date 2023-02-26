@@ -1,0 +1,20 @@
+@startuml
+
+actor User as usr
+participant App as app
+database UsrDB as db
+
+usr -> app : Login
+app -> db : Get \n likeable users
+app <- db : Return list of \n likeable users
+app -> usr : Show list of \n likeable users
+usr -> app : Swip left to dislike
+usr -> app : Swip right to like
+app -> db : Update \n likeable users
+app -> db : Check if other \n user liked me
+alt other user liked me
+    app -> db : Update match users \n (add new user to match list)
+    app -> db : Update match users for other user \n (add me to match list)
+    app -> usr : Show match
+    usr -> app : Enter chat with matched user
+end

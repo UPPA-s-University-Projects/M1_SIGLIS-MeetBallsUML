@@ -5,16 +5,24 @@ participant App as app
 database UsrDB as db
 
 usr -> app : Login
-app -> db : Get \n likeable users
-app <- db : Return list of \n likeable users
+app -> db : Get \n list of all users \n (excluding liked and disliked users)
+app <- db : Return list of \n users
+
+app -> app : Pass through the cooking algorithm
+
 app -> usr : Show list of \n likeable users
-usr -> app : Swip left to dislike
-usr -> app : Swip right to like
-app -> db : Update \n likeable users
-app -> db : Check if other \n user liked me
-alt other user liked me
-    app -> db : Update match users \n (add new user to match list)
-    app -> db : Update match users for other user \n (add me to match list)
-    app -> usr : Show match
-    usr -> app : Enter chat with matched user
+loop until list is empty or user disconnect
+    usr -> app : Swip left to dislike
+    app -> app : Add disliked user to \n disliked list
+    usr -> app : Swip right to like
+    app -> app : Add liked user to \n liked list
+    app -> app : Check if liked user \n liked me
+    app -> db : Send update  
+    alt other user liked me
+        app -> app : Update match users \n (add new user to match list)
+        app -> app : Update match users for other user \n (add me to match list)
+        app -> db : Send update
+        app -> usr : Show match
+        usr -> app : Enter chat with matched user
+    end
 end

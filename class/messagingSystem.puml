@@ -1,5 +1,5 @@
 @startuml 
-    Class "Person" as person{
+    Class "User" as person{
    
         - Int id
         - String name
@@ -12,12 +12,22 @@
         - Double lat
         - Float perimeter
         - Bool desert
+        - Float tauxCuisson 
         - []Person liked
         - []Person matched
         - []CookType favCookType
         - []Diet diets
+        - []User likedUsers
+        - []User matchedUsers
+        - []User dislikedUsers
+        - []User matchingCandidates
+
+        + void addObjectToList(List<Object> list, User o)
+        + void removeObjectFromList(List<Object> list, Object o)
+        + []User itsCookingTime([]User users)
 
     }
+
 
     Class "Message" as messaging{
         - String messages        
