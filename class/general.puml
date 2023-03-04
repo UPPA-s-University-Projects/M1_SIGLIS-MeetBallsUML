@@ -2,30 +2,25 @@
     Class "User" as person{
    
         - Int id
-        - String name
-        - String surname
+        - String name, fname, handle
         - Int age
         - String identity
         - String email
         - String bio
-        - Double lon
-        - Double lat
+        - Double lon, lat
         - Float perimeter
         - Bool desert
         - Float tauxCuisson 
-        - []Person liked
-        - []Person matched
-        - []CookType favCookType
-        - []Diet diets
-        - []User likedUsers
-        - []User matchedUsers
-        - []User dislikedUsers
-        - []User matchingCandidates
+        - List<CookType> favCookType
+        - List<Diet> diets
+        - List<User> likedUsers, matchedUsers, dislikedUsers, matchingCandidates
 
         + void addObjectToList(List<Object> list, User o)
         + void removeObjectFromList(List<Object> list, Object o)
-        + []User itsCookingTime([]User users)
-
+        + List<User> itsCookingTime(List<User> users)
+        + void writeMessage(Message m, Discussion d)
+        + void leaveDiscussion(Discussion d)
+        
     }
 
     Class "CookType" as cookType{
@@ -48,12 +43,45 @@
 
         + addDiets(Diet d)
         + removeDiets()
+
     }
 
-    person "0..*" o-- "0..*" cookType
-    person "0..*" o-- "0..*" diet
+    Class "Restaurant" as restaurant{
+        - Int id
+        - String name
+        - String address
+        - CookType cookType
+        - List<Dish> dishes
 
-    dish "1" *--- "0..*" cookType
-    dish "0..*" *-- "0..*" diet
-    person "0..*" o- "0..*" person
+        + addDish(Dish d)
+        + removeDish(Dish d)
+    }
+
+
+    Class "Message" as messaging{
+        - String messages        
+        - DateTime timestamp
+        - Person sender
+        - Discussion discussion
+    }
+
+    Class "Discussion" as discuss{
+        - []Message messages
+        - Person[] participants
+    }
+
+    person o-- "0..4" cookType
+    person o-- "0..*" diet
+    person - "0..*" person
+
+    dish o--- "1" cookType
+    dish o-- "0..*" diet
+    
+    discuss "1" *-- "0..*" messaging
+    messaging "1" -- "1" person
+    person "2" *-- "0..*" discuss
+
+    restaurant o-- "1" cookType
+    restaurant o-- "0..*" dish
+
 @enduml

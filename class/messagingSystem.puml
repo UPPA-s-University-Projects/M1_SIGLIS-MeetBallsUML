@@ -2,32 +2,26 @@
     Class "User" as person{
    
         - Int id
-        - String name
-        - String surname
+        - String name, fname, handle
         - Int age
         - String identity
         - String email
         - String bio
-        - Double lon
-        - Double lat
+        - Double lon, lat
         - Float perimeter
         - Bool desert
         - Float tauxCuisson 
-        - []Person liked
-        - []Person matched
-        - []CookType favCookType
-        - []Diet diets
-        - []User likedUsers
-        - []User matchedUsers
-        - []User dislikedUsers
-        - []User matchingCandidates
+        - List<CookType> favCookType
+        - List<Diet> diets
+        - List<User> likedUsers, matchedUsers, dislikedUsers, matchingCandidates
 
         + void addObjectToList(List<Object> list, User o)
         + void removeObjectFromList(List<Object> list, Object o)
-        + []User itsCookingTime([]User users)
-
+        + List<User> itsCookingTime(List<User> users)
+        + void writeMessage(Message m, Discussion d)
+        + void leaveDiscussion(Discussion d)
+        
     }
-
 
     Class "Message" as messaging{
         - String messages        
@@ -41,6 +35,7 @@
         - Person[] participants
     }
 
-    discuss "1" -- "0..*" messaging
+    discuss "1" *-- "0..*" messaging
     messaging "1" -- "1" person
-    person "2" -- "0..*" discuss
+    person "2" *-- "0..*" discuss
+@enduml
