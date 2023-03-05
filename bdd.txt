@@ -1,0 +1,14 @@
+Usr = (id INT, name VARCHAR(50), fname VARCHAR(50), handle VARCHAR(50), age INT, gender LOGICAL, email VARCHAR(50), bio VARCHAR(255), loc TEXT, perimeter DECIMAL(15,2), desert LOGICAL);
+Diet = (id INT, designation VARCHAR(255));
+Dish = (id INT, name VARCHAR(50), description VARCHAR(50), picture VARCHAR(50));
+SimpleMsg = (id INT, msg_timestamp DATETIME, msg VARCHAR(255), discussion INT, sender INT);
+Discussion = (id INT, person1 INT, person2 INT, #id_1);
+Restaurant = (id INT, name VARCHAR(50), address TEXT);
+CookType = (id INT, designation VARCHAR(255), #id_1, #id_2);
+LikedUsr = (#id, #id_1, idUsr VARCHAR(50), idLikedUsr VARCHAR(50));
+UsrDiet = (#id, #id_1, id_usr INT, id_regime INT);
+FavDish = (#id, #id_1, id_usr INT, id_plat INT);
+usrFavCookType = (#id, #id_1, id_usr INT, id_type INT);
+MatchedUsr = (#id, #id_1, id_usr INT, id_matched_usr INT);
+Participant = (#id, #id_1);
+RestaurantsDishes = (#id, #id_1);
