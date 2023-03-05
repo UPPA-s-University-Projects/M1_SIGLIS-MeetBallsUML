@@ -1,0 +1,178 @@
+@startuml
+
+left to right direction
+
+Class "DaoBddHelper" as daoBddHelper{
+    - static DaoBddHelper daoBddHelper
+    - final EntityManagerFactory emf
+
+    + void beginTransaction()
+    + void commitTransaction()
+    + void rollbackTransaction()
+
+    + void makePersistencyAction(Object o, boolean useTransac, PersistencyAction action) throws DaoException
+}
+
+Enum "PersistencyAction" as persistencyAction{
+    + PERSIST
+    + MERGE
+    + REMOVE
+}
+
+Interface "IUserDAO" as iPersonDAO{
+    + User getUserById(int id) throws DaoException
+    + List<User> getUsersByFavCookType(list<CookType> ct) throws DaoException
+    + List<User> getUsersByLikedUsers(User u) throws DaoException
+    + List<User> getUsersByMatchedUsers(User u) throws DaoException
+    + User createUser(User u, final boolean useTransac) throws DaoException
+    + void updateUser(User u, final boolean useTransac) throws DaoException
+    + void deleteUser(User u, final boolean useTransac) throws DaoException
+}
+
+Class "UserDAO" as personDAO{
+
+    - final DaoBddHelper dbh
+
+    + User getUserById(int id) throws DaoException
+    + List<User> getUsersByFavCookType(list<CookType> ct) throws DaoException
+    + List<User> getUsersByLikedUsers(User u) throws DaoException
+    + List<User> getUsersByMatchedUsers(User u) throws DaoException
+    + User createUser(User u, final boolean useTransac) throws DaoException
+    + void updateUser(User u, final boolean useTransac) throws DaoException
+    + void deleteUser(User u, final boolean useTransac) throws DaoException
+}
+
+Interface "ICookTypeDAO" as iCookTypeDAO{
+    + CookType getCookTypeById(int id) throws DaoException
+    + CookType createCookType(CookType ct, final boolean useTransac) throws DaoException
+    + void updateCookType(CookType ct, final boolean useTransac) throws DaoException
+    + void deleteCookType(CookType ct, final boolean useTransac) throws DaoException
+}
+
+Class "CookTypeDAO" as cookTypeDAO{
+
+    - final DaoBddHelper dbh
+
+    + CookType getCookTypeById(int id) throws DaoException
+    + CookType createCookType(CookType ct, final boolean useTransac) throws DaoException
+    + void updateCookType(CookType ct, final boolean useTransac) throws DaoException
+    + void deleteCookType(CookType ct, final boolean useTransac) throws DaoException
+}
+
+Interface "IDietDAO" as iDietDAO{
+    + Diet getDietById(int id) throws DaoException
+    + Diet createDiet(Diet d, final boolean useTransac) throws DaoException
+    + void updateDiet(Diet d, final boolean useTransac) throws DaoException
+    + void deleteDiet(Diet d, final boolean useTransac) throws DaoException
+}
+
+Class "DietDAO" as dietDAO{
+
+    - final DaoBddHelper dbh
+
+    + Diet getDietById(int id) throws DaoException
+    + Diet createDiet(Diet d, final boolean useTransac) throws DaoException
+    + void updateDiet(Diet d, final boolean useTransac) throws DaoException
+    + void deleteDiet(Diet d, final boolean useTransac) throws DaoException
+}
+
+Interface "IDishDAO" as iDishDAO{
+    + Dish getDishById(int id) throws DaoException
+    + Dish getDishByCookType(CookType ct) throws DaoException
+    + Dish createDish(Dish d, final boolean useTransac) throws DaoException
+    + void updateDish(Dish d, final boolean useTransac) throws DaoException
+    + void deleteDish(Dish d, final boolean useTransac) throws DaoException
+}
+
+Class "DishDAO" as dishDAO{
+
+    - final DaoBddHelper dbh
+
+    + Dish getDishById(int id) throws DaoException
+    + Dish getDishByCookType(CookType ct) throws DaoException
+    + Dish createDish(Dish d, final boolean useTransac) throws DaoException
+    + void updateDish(Dish d, final boolean useTransac) throws DaoException
+    + void deleteDish(Dish d, final boolean useTransac) throws DaoException
+}
+
+Interface "IRestaurantDAO" as iRestaurantDAO{
+    + Restaurant getRestaurantById(int id) throws DaoException
+    + Restaurant createRestaurant(Restaurant r, final boolean useTransac) throws DaoException
+    + void updateRestaurant(Restaurant r, final boolean useTransac) throws DaoException
+    + void deleteRestaurant(Restaurant r, final boolean useTransac) throws DaoException
+}
+
+Class "RestaurantDAO" as restaurantDAO{
+    - final DaoBddHelper dbh
+
+    + Restaurant getRestaurantById(int id) throws DaoException
+    + Restaurant getRestaurantByCookType(CookType ct) throws DaoException
+    + Restaurant createRestaurant(Restaurant r, final boolean useTransac) throws DaoException
+    + void updateRestaurant(Restaurant r, final boolean useTransac) throws DaoException
+    + void deleteRestaurant(Restaurant r, final boolean useTransac) throws DaoException
+}
+
+
+Interface "IMessageDAO" as iMessageDAO{
+    + Message getMessageById(int id) throws DaoException
+    + Restaurant getRestaurantByCookType(CookType ct) throws DaoException
+    + Message createMessage(Message m, final boolean useTransac) throws DaoException
+    + void updateMessage(Message m, final boolean useTransac) throws DaoException
+    + void deleteMessage(Message m, final boolean useTransac) throws DaoException
+}
+
+Class "MessageDAO" as messagingDAO{
+    - final DaoBddHelper dbh
+
+    + Message getMessageById(int id) throws DaoException
+    + Message createMessage(Message m, final boolean useTransac) throws DaoException
+    + void updateMessage(Message m, final boolean useTransac) throws DaoException
+    + void deleteMessage(Message m, final boolean useTransac) throws DaoException
+}
+
+
+
+Interface "IDiscussionDAO" as iDiscussionDAO{
+    + Discussion getDiscussionById(int id) throws DaoException
+    + Discussion getDiscussionByMessage(Message m) throws DaoException
+    + Discussion createDiscussion(Discussion d, final boolean useTransac) throws DaoException
+    + void updateDiscussion(Discussion d, final boolean useTransac) throws DaoException
+    + void deleteDiscussion(Discussion d, final boolean useTransac) throws DaoException
+}
+
+Class "DiscussionDAO" as discussDAO{
+    - final DaoBddHelper dbh
+
+    + Discussion getDiscussionById(int id) throws DaoException
+    + Discussion getDiscussionByMessage(Message m) throws DaoException
+    + Discussion createDiscussion(Discussion d, final boolean useTransac) throws DaoException
+    + void updateDiscussion(Discussion d, final boolean useTransac) throws DaoException
+    + void deleteDiscussion(Discussion d, final boolean useTransac) throws DaoException
+}
+
+persistencyAction --- daoBddHelper
+
+daoBddHelper -- personDAO
+daoBddHelper -- cookTypeDAO
+daoBddHelper -- dietDAO
+daoBddHelper -- dishDAO
+daoBddHelper -- restaurantDAO
+daoBddHelper -- messagingDAO
+daoBddHelper -- discussDAO
+
+personDAO --|> iPersonDAO
+cookTypeDAO --|>  iCookTypeDAO
+
+dietDAO --|>  iDietDAO
+
+dishDAO --|>  iDishDAO
+restaurantDAO  --|> iRestaurantDAO
+messagingDAO  --|> iMessageDAO
+discussDAO  --|> iDiscussionDAO
+
+
+
+
+
+
+@enduml

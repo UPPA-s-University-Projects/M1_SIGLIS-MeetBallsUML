@@ -23,11 +23,12 @@
         
     }
 
-    Class "Message" as messaging{
-        - String messages        
-        - DateTime timestamp
-        - Person sender
-        - Discussion discussion
+    Class "Discussion" as discuss{
+        - []Message messages
+        - Person[] participants
+
+        + Message updateMessages(Message m)
+        + void removeMsg(Message m)
     }
 
     Class "Discussion" as discuss{

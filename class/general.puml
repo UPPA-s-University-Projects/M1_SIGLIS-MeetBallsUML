@@ -68,6 +68,9 @@
     Class "Discussion" as discuss{
         - []Message messages
         - Person[] participants
+
+        + Message updateMessages(Message m)
+        + void removeMsg(Message m)
     }
 
     person o-- "0..4" cookType
