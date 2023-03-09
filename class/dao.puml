@@ -33,13 +33,6 @@ Class "UserDAO" as personDAO{
 
     - final DaoBddHelper dbh
 
-    + User getUserById(int id) throws DaoException
-    + List<User> getUsersByFavCookType(list<CookType> ct) throws DaoException
-    + List<User> getUsersByLikedUsers(User u) throws DaoException
-    + List<User> getUsersByMatchedUsers(User u) throws DaoException
-    + User createUser(User u, final boolean useTransac) throws DaoException
-    + void updateUser(User u, final boolean useTransac) throws DaoException
-    + void deleteUser(User u, final boolean useTransac) throws DaoException
 }
 
 Interface "ICookTypeDAO" as iCookTypeDAO{
@@ -53,10 +46,6 @@ Class "CookTypeDAO" as cookTypeDAO{
 
     - final DaoBddHelper dbh
 
-    + CookType getCookTypeById(int id) throws DaoException
-    + CookType createCookType(CookType ct, final boolean useTransac) throws DaoException
-    + void updateCookType(CookType ct, final boolean useTransac) throws DaoException
-    + void deleteCookType(CookType ct, final boolean useTransac) throws DaoException
 }
 
 Interface "IDietDAO" as iDietDAO{
@@ -70,10 +59,6 @@ Class "DietDAO" as dietDAO{
 
     - final DaoBddHelper dbh
 
-    + Diet getDietById(int id) throws DaoException
-    + Diet createDiet(Diet d, final boolean useTransac) throws DaoException
-    + void updateDiet(Diet d, final boolean useTransac) throws DaoException
-    + void deleteDiet(Diet d, final boolean useTransac) throws DaoException
 }
 
 Interface "IDishDAO" as iDishDAO{
@@ -88,11 +73,6 @@ Class "DishDAO" as dishDAO{
 
     - final DaoBddHelper dbh
 
-    + Dish getDishById(int id) throws DaoException
-    + Dish getDishByCookType(CookType ct) throws DaoException
-    + Dish createDish(Dish d, final boolean useTransac) throws DaoException
-    + void updateDish(Dish d, final boolean useTransac) throws DaoException
-    + void deleteDish(Dish d, final boolean useTransac) throws DaoException
 }
 
 Interface "IRestaurantDAO" as iRestaurantDAO{
@@ -106,11 +86,6 @@ Interface "IRestaurantDAO" as iRestaurantDAO{
 Class "RestaurantDAO" as restaurantDAO{
     - final DaoBddHelper dbh
 
-    + Restaurant getRestaurantById(int id) throws DaoException
-    + Restaurant getRestaurantByCookType(CookType ct) throws DaoException
-    + Restaurant createRestaurant(Restaurant r, final boolean useTransac) throws DaoException
-    + void updateRestaurant(Restaurant r, final boolean useTransac) throws DaoException
-    + void deleteRestaurant(Restaurant r, final boolean useTransac) throws DaoException
 }
 
 
@@ -128,14 +103,6 @@ Interface "IMessageDAO" as iMessageDAO{
 Class "MessageDAO" as messagingDAO{
     - final DaoBddHelper dbh
 
-    + Message getMessageById(int id) throws DaoException
-    + List<Message> getMessagesByDiscussion(Discussion d) throws DaoException
-    + List<Message> getMessagesByUser(User u) throws DaoException
-    + List<Message> getMessagesByUserInDiscussion(User u, Discussion d) throws DaoExceptionÒ
-    + Restaurant getRestaurantByCookType(CookType ct) throws DaoException
-    + Message createMessage(Message m, final boolean useTransac) throws DaoException
-    + void updateMessage(Message m, final boolean useTransac) throws DaoException
-    + void deleteMessage(Message m, final boolean useTransac) throws DaoException
 }
 
 
@@ -152,11 +119,6 @@ Interface "IDiscussionDAO" as iDiscussionDAO{
 Class "DiscussionDAO" as discussDAO{
     - final DaoBddHelper dbh
 
-    + Discussion getDiscussionById(int id) throws DaoException
-    + Discussion getDiscussionByMessage(Message m) throws DaoException
-    + Discussion createDiscussion(Discussion d, final boolean useTransac) throws DaoException
-    + void updateDiscussion(Discussion d, final boolean useTransac) throws DaoException
-    + void deleteDiscussion(Discussion d, final boolean useTransac) throws DaoException
 }
 
 persistencyAction --- daoBddHelper
