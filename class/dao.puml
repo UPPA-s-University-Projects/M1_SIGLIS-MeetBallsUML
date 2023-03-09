@@ -97,6 +97,7 @@ Class "DishDAO" as dishDAO{
 
 Interface "IRestaurantDAO" as iRestaurantDAO{
     + Restaurant getRestaurantById(int id) throws DaoException
+    + Restaurant getRestaurantByCookType(CookType ct) throws DaoException
     + Restaurant createRestaurant(Restaurant r, final boolean useTransac) throws DaoException
     + void updateRestaurant(Restaurant r, final boolean useTransac) throws DaoException
     + void deleteRestaurant(Restaurant r, final boolean useTransac) throws DaoException
@@ -115,6 +116,9 @@ Class "RestaurantDAO" as restaurantDAO{
 
 Interface "IMessageDAO" as iMessageDAO{
     + Message getMessageById(int id) throws DaoException
+    + List<Message> getMessagesByDiscussion(Discussion d) throws DaoException
+    + List<Message> getMessagesByUser(User u) throws DaoException
+    + List<Message> getMessagesByUserInDiscussion(User u, Discussion d) throws DaoExceptionÒ
     + Restaurant getRestaurantByCookType(CookType ct) throws DaoException
     + Message createMessage(Message m, final boolean useTransac) throws DaoException
     + void updateMessage(Message m, final boolean useTransac) throws DaoException
@@ -125,6 +129,10 @@ Class "MessageDAO" as messagingDAO{
     - final DaoBddHelper dbh
 
     + Message getMessageById(int id) throws DaoException
+    + List<Message> getMessagesByDiscussion(Discussion d) throws DaoException
+    + List<Message> getMessagesByUser(User u) throws DaoException
+    + List<Message> getMessagesByUserInDiscussion(User u, Discussion d) throws DaoExceptionÒ
+    + Restaurant getRestaurantByCookType(CookType ct) throws DaoException
     + Message createMessage(Message m, final boolean useTransac) throws DaoException
     + void updateMessage(Message m, final boolean useTransac) throws DaoException
     + void deleteMessage(Message m, final boolean useTransac) throws DaoException
@@ -135,6 +143,7 @@ Class "MessageDAO" as messagingDAO{
 Interface "IDiscussionDAO" as iDiscussionDAO{
     + Discussion getDiscussionById(int id) throws DaoException
     + Discussion getDiscussionByMessage(Message m) throws DaoException
+    + List<Discussion> getDiscussionsByUser(User u) throws DaoException
     + Discussion createDiscussion(Discussion d, final boolean useTransac) throws DaoException
     + void updateDiscussion(Discussion d, final boolean useTransac) throws DaoException
     + void deleteDiscussion(Discussion d, final boolean useTransac) throws DaoException
