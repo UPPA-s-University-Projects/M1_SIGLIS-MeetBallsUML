@@ -131,15 +131,15 @@ daoBddHelper -- restaurantDAO
 daoBddHelper -- messagingDAO
 daoBddHelper -- discussDAO
 
-personDAO --|> iPersonDAO
-cookTypeDAO --|>  iCookTypeDAO
+personDAO ..|> iPersonDAO
+cookTypeDAO ..|>  iCookTypeDAO
 
-dietDAO --|>  iDietDAO
+dietDAO ..|>  iDietDAO
 
-dishDAO --|>  iDishDAO
-restaurantDAO  --|> iRestaurantDAO
-messagingDAO  --|> iMessageDAO
-discussDAO  --|> iDiscussionDAO
+dishDAO ..|>  iDishDAO
+restaurantDAO  ..|> iRestaurantDAO
+messagingDAO  ..|> iMessageDAO
+discussDAO  ..|> iDiscussionDAO
 
 
 

@@ -26,17 +26,36 @@
     Class "Discussion" as discuss{
         - []Message messages
         - Person[] participants
+        - Observable observable
 
+        + Message addMsg(Message m)
         + Message updateMessages(Message m)
         + void removeMsg(Message m)
     }
 
-    Class "Discussion" as discuss{
-        - []Message messages
-        - Person[] participants
+    Class "Message" as messaging{
+        - String messages        
+        - DateTime timestamp
+        - Person sender
+        - Discussion discussion
     }
+
+    Interface "MessagingSystemObserver" as observer{
+        - void update()
+    }
+
+    Class "MessagingSystemObservable" as observable{
+        - List<User> observers
+        - void addObserver(Observer o)
+        - void removeObserver(Observer o)
+        - void notifyObservers()
+    }
+    
 
     discuss "1" *-- "0..*" messaging
     messaging "1" -- "1" person
     person "2" *-- "0..*" discuss
+
+    discuss "1" *-- "0..*" observable
+    observable ..|> observer
 @enduml
