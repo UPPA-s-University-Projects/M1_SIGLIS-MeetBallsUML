@@ -14,18 +14,18 @@
         - List<CookType> favCookType
         - List<Diet> diets
         - List<User> likedUsers, matchedUsers, dislikedUsers, matchingCandidates
+        - Map<Discussion, List<Message>> discussions
 
         + void addObjectToList(List<Object> list, User o)
         + void removeObjectFromList(List<Object> list, Object o)
         + List<User> itsCookingTime(List<User> users)
         + void writeMessage(Message m, Discussion d)
         + void leaveDiscussion(Discussion d)
-        
     }
 
     Class "Discussion" as discuss{
-        - []Message messages
-        - Person[] participants
+        - List<Message> messages
+        - List<Person> participants
         - Observable observable
 
         + Message addMsg(Message m)
@@ -41,14 +41,13 @@
     }
 
     Interface "MessagingSystemObserver" as observer{
-        - void update()
+        + void recieveNewMessage(Discussion d, Message m)
     }
 
-    Class "MessagingSystemObservable" as observable{
-        - List<User> observers
-        - void addObserver(Observer o)
-        - void removeObserver(Observer o)
-        - void notifyObservers()
+    Interface "MessagingSystemObservable" as observable{
+        + void addObserver(Observer o)
+        + void removeObserver(Observer o)
+        + void notifyObservers()
     }
     
 
@@ -56,6 +55,6 @@
     messaging "1" -- "1" person
     person "2" *-- "0..*" discuss
 
-    discuss "1" *-- "0..*" observable
-    observable ..|> observer
+    discuss .|> observable
+    person .|> observer
 @enduml

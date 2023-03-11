@@ -1,5 +1,5 @@
 @startuml 
-    Class "User" as person{
+    Class "User" as person #D2738D-8DD273{
    
         - Int id
         - String name, fname, handle
@@ -23,17 +23,17 @@
         + void leaveDiscussion(Discussion d)
     }
 
-    Class "CookType" as cookType{
+    Class "CookType" as cookType #8DD273{
         - Int id
         - String name
     }
 
-    Class "Diet" as diet{
+    Class "Diet" as diet #8DD273{
         - Int id
         - String name
     }
 
-    Class "Dish" as dish{
+    Class "Dish" as dish #8DD273{
         - Int id
         - String name
         - String description
@@ -46,7 +46,7 @@
 
     }
 
-    Class "Restaurant" as restaurant{
+    Class "Restaurant" as restaurant #738DD2{
         - Int id
         - String name
         - String address
@@ -58,7 +58,7 @@
     }
 
 
-    Class "Discussion" as discuss{
+    Class "Discussion" as discuss #D2738D{
         - List<Message> messages
         - List<Person> participants
         - Observable observable
@@ -68,18 +68,18 @@
         + void removeMsg(Message m)
     }
 
-    Class "Message" as messaging{
+    Class "Message" as messaging #D2738D{
         - String messages        
         - DateTime timestamp
         - Person sender
         - Discussion discussion
     }
 
-    Interface "MessagingSystemObserver" as observer{
+    Interface "MessagingSystemObserver" as observer #D2738D{
         + void recieveNewMessage(Discussion d, Message m)
     }
 
-    Interface "MessagingSystemObservable" as observable{
+    Interface "MessagingSystemObservable" as observable #D2738D{
         + void addObserver(Observer o)
         + void removeObserver(Observer o)
         + void notifyObservers()

@@ -58,9 +58,16 @@
     }
 
 
+    /'Class "Message" as messaging{
+        - String messages        
+        - DateTime timestamp
+        - Person sender
+        - Discussion discussion
+    }
+
     Class "Discussion" as discuss{
-        - List<Message> messages
-        - List<Person> participants
+        - []Message messages
+        - Person[] participants
         - Observable observable
 
         + Message addMsg(Message m)
@@ -68,42 +75,32 @@
         + void removeMsg(Message m)
     }
 
-    Class "Message" as messaging{
-        - String messages        
-        - DateTime timestamp
-        - Person sender
-        - Discussion discussion
-    }
-
     Interface "MessagingSystemObserver" as observer{
-        + void recieveNewMessage(Discussion d, Message m)
+        - void update()
     }
 
-    Interface "MessagingSystemObservable" as observable{
-        + void addObserver(Observer o)
-        + void removeObserver(Observer o)
-        + void notifyObservers()
-    }
+    Class "MessagingSystemObservable" as observable{
+        - List<User> observers
+        - void addObserver(Observer o)
+        - void removeObserver(Observer o)
+        - void notifyObservers()
+    }'/
 
     person o-- "0..4" cookType
     person o-- "0..*" diet
     person - "0..*" person
 
-    dish o-- "1" cookType
+    dish o--- "1" cookType
     dish o-- "0..*" diet
     
-
-    discuss ..|> observable
-    person ..|> observer
-
-    discuss "1" *-- "0..*" messaging
+    /'discuss "1" *-- "0..*" messaging
     messaging "1" -- "1" person
-    person "2" *-- "0..*" discuss
-
+    person "2" *-- "0..*" discuss'/
 
     restaurant o-- "1" cookType
     restaurant o-- "0..*" dish
 
-    
+    /'discuss "1" *-- "0..*" observable
+    observable ..|> observer'/
 
 @enduml
