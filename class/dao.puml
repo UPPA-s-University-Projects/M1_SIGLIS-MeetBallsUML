@@ -94,7 +94,6 @@ Interface "IMessageDAO" as iMessageDAO{
     + List<Message> getMessagesByDiscussion(Discussion d) throws DaoException
     + List<Message> getMessagesByUser(User u) throws DaoException
     + List<Message> getMessagesByUserInDiscussion(User u, Discussion d) throws DaoExceptionÒ
-    + Restaurant getRestaurantByCookType(CookType ct) throws DaoException
     + Message createMessage(Message m, final boolean useTransac) throws DaoException
     + void updateMessage(Message m, final boolean useTransac) throws DaoException
     + void deleteMessage(Message m, final boolean useTransac) throws DaoException
