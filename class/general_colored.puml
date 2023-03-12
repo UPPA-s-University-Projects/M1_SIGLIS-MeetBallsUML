@@ -59,6 +59,7 @@
 
 
     Class "Discussion" as discuss #D2738D{
+        - Int id
         - List<Message> messages
         - List<Person> participants
         - Observable observable
@@ -69,6 +70,7 @@
     }
 
     Class "Message" as messaging #D2738D{
+        - Int id
         - String messages        
         - DateTime timestamp
         - Person sender

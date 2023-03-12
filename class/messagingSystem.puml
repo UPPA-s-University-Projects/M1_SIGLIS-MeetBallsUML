@@ -24,6 +24,7 @@
     }
 
     Class "Discussion" as discuss{
+        - Int id
         - List<Message> messages
         - List<Person> participants
         - Observable observable
@@ -34,6 +35,7 @@
     }
 
     Class "Message" as messaging{
+        - Int id
         - String messages        
         - DateTime timestamp
         - Person sender
