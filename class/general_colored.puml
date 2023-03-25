@@ -13,7 +13,7 @@
         - Float tauxCuisson 
         - List<CookType> favCookType
         - List<Diet> diets
-        - List<User> likedUsers, matchedUsers, dislikedUsers, matchingCandidates
+        - List<User> likedUsers, matchedUsers, dislikedUsers
         - Map<Discussion, List<Message>> discussions
 
         + void addObjectToList(List<Object> list, User o)
