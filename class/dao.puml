@@ -24,6 +24,8 @@ Interface "IUserDAO" as iPersonDAO{
     + List<User> getUsersByFavCookType(list<CookType> ct) throws DaoException
     + List<User> getUsersByLikedUsers(User u) throws DaoException
     + List<User> getUsersByMatchedUsers(User u) throws DaoException
+    + List<User> getToMatchUser(User u) throws DaoException
+    + User getLoginUser(String email, String password) throws DaoException
     + User createUser(User u, final boolean useTransac) throws DaoException
     + void updateUser(User u, final boolean useTransac) throws DaoException
     + void deleteUser(User u, final boolean useTransac) throws DaoException
@@ -37,6 +39,8 @@ Class "UserDAO" as personDAO{
 
 Interface "ICookTypeDAO" as iCookTypeDAO{
     + CookType getCookTypeById(int id) throws DaoException
+    + List<CookType> getAllCookTypes() throws DaoException
+    + List<CookType> getCookTypesByDish(Dish d) throws DaoException
     + CookType createCookType(CookType ct, final boolean useTransac) throws DaoException
     + void updateCookType(CookType ct, final boolean useTransac) throws DaoException
     + void deleteCookType(CookType ct, final boolean useTransac) throws DaoException
@@ -50,6 +54,9 @@ Class "CookTypeDAO" as cookTypeDAO{
 
 Interface "IDietDAO" as iDietDAO{
     + Diet getDietById(int id) throws DaoException
+    + List<Diet> getDietsByUser(User u) throws DaoException
+    + List<Diet> getDietsByDish(Dish d) throws DaoException
+    + List<Diet> getAllDiets() throws DaoException
     + Diet createDiet(Diet d, final boolean useTransac) throws DaoException
     + void updateDiet(Diet d, final boolean useTransac) throws DaoException
     + void deleteDiet(Diet d, final boolean useTransac) throws DaoException
